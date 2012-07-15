@@ -100,6 +100,13 @@ displayname(self)
 	OUTPUT:
 		RETVAL
 
+void
+DESTROY(self)
+	CXCursor *self
+
+	CODE:
+		free(self);
+
 MODULE = Clang				PACKAGE = Clang::Index::CursorKind
 
 SV *
