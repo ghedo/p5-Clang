@@ -1,0 +1,36 @@
+CXIndex				T_CLANG_INDEX
+CXTranslationUnit		T_CLANG_INDEX_TUNIT
+CXCursor *			T_CLANG_INDEX_CURSOR
+enum CXCursorKind		T_CLANG_INDEX_CURSOR_KIND
+
+OUTPUT
+T_CLANG_INDEX
+	sv_setref_pv($arg, \"Clang::Index\", (void *) $var);
+T_CLANG_INDEX_TUNIT
+	sv_setref_pv($arg, \"Clang::Index::TUnit\", (void *) $var);
+T_CLANG_INDEX_CURSOR
+	sv_setref_pv($arg, \"Clang::Index::Cursor\", (void *) $var);
+T_CLANG_INDEX_CURSOR_KIND
+	sv_setref_iv($arg, \"Clang::Index::CursorKind\", $var);
+
+INPUT
+T_CLANG_INDEX
+	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::Index\"))
+		$var = INT2PTR($type, SvIV((SV *) SvRV($arg)));
+	else
+		Perl_croak(aTHX_ \"$var is not of type Clang::Index\");
+T_CLANG_INDEX_TUNIT
+	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::Index::TUnit\"))
+		$var = INT2PTR($type, SvIV((SV *) SvRV($arg)));
+	else
+		Perl_croak(aTHX_ \"$var is not of type Clang::Index::TUnit\");
+T_CLANG_INDEX_CURSOR
+	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::Index::Cursor\"))
+		$var = INT2PTR($type, SvIV((SV *) SvRV($arg)));
+	else
+		Perl_croak(aTHX_ \"$var is not of type Clang::Index::Cursor\");
+T_CLANG_INDEX_CURSOR_KIND
+	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::Index::CursorKind\"))
+		$var = SvIV((SV *) SvRV($arg));
+	else
+		Perl_croak(aTHX_ \"$var is not of type Clang::Index::CursorKind\");
