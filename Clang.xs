@@ -139,6 +139,30 @@ children(self)
 		RETVAL
 
 void
+location(self)
+	CXCursor *self
+
+	INIT:
+		CXFile file;
+		const char *filename;
+		unsigned int line, column, offset;
+
+	PPCODE:
+		CXSourceLocation loc = clang_getCursorLocation(*self);
+
+		clang_getSpellingLocation(loc, &file, &line, &column, NULL);
+
+		filename = clang_getCString(clang_getFileName(file));
+
+		if (filename != NULL)
+			mXPUSHp(filename, strlen(filename));
+		else
+			mXPUSHp("", 0);
+
+		mXPUSHi(line);
+		mXPUSHi(column);
+
+void
 DESTROY(self)
 	CXCursor *self
 
