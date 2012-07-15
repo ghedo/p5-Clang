@@ -4,6 +4,21 @@
 
 #include <clang-c/Index.h>
 
+enum CXChildVisitResult visitor(CXCursor cursor, CXCursor parent, CXClientData data) {
+	SV *child;
+	AV *children = data;
+
+	puts("lol");
+	CXCursor *ref = malloc(sizeof(CXCursor));
+	*ref = cursor;
+
+	child = sv_setref_pv(newSV(0), "Clang::Index::Cursor", (void *) ref);
+
+	av_push(children, child);
+
+	return CXChildVisit_Continue;
+}
+
 MODULE = Clang				PACKAGE = Clang::Index
 
 CXIndex
@@ -32,10 +47,11 @@ parse(self, file, ...)
 	CODE:
 		STRLEN len;
 		const char *path = SvPVbyte(file, len);
-
-		RETVAL= clang_parseTranslationUnit(
+		CXTranslationUnit tu = clang_parseTranslationUnit(
 			self, path, NULL, 0, NULL, 0, 0
 		);
+
+		RETVAL = tu;
 
 	OUTPUT:
 		RETVAL
@@ -103,6 +119,22 @@ displayname(self)
 	CODE:
 		CXString dname = clang_getCursorDisplayName(*self);
 		RETVAL = newSVpv(clang_getCString(dname), 0);
+
+	OUTPUT:
+		RETVAL
+
+AV *
+children(self)
+	CXCursor *self
+
+	CODE:
+		AV *children = newAV();
+
+		CXString spelling = clang_getCursorSpelling(*self);
+		puts(clang_getCString(spelling));
+		clang_visitChildren(*self, visitor, children);
+
+		RETVAL = children;
 
 	OUTPUT:
 		RETVAL
