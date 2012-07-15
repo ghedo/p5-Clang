@@ -7,7 +7,7 @@ use Clang;
 
 =head1 NAME
 
-Clang::Index - Perl bindings to the Clang Index interface
+Clang::Index - Perl bindings to the Clang compiler's Index interface
 
 =head1 SYNOPSIS
 

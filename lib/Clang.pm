@@ -8,7 +8,7 @@ XSLoader::load('Clang', $Clang::VERSION);
 
 =head1 NAME
 
-Clang - Perl bindings to the Clang library
+Clang - Perl bindings to the Clang compiler's programming interface
 
 =head1 DESCRIPTION
 
