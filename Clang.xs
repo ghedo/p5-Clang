@@ -66,6 +66,13 @@ spelling(self)
 	OUTPUT:
 		RETVAL
 
+void
+DESTROY(self)
+	CXTranslationUnit self
+
+	CODE:
+		clang_disposeTranslationUnit(self);
+
 MODULE = Clang				PACKAGE = Clang::Index::Cursor
 
 enum CXCursorKind
