@@ -3,28 +3,11 @@ package Clang::Index;
 use strict;
 use warnings;
 
-use Clang;
-
 =head1 NAME
 
-Clang::Index - Perl bindings to the Clang compiler's Index interface
-
-=head1 SYNOPSIS
-
-    use Clang::Index;
-
-    my $index = Clang::Index -> new(1);
-
-    my $tunit = $index -> parse('file.c');
+Clang::Index - Clang Index object
 
 =head1 DESCRIPTION
-
-B<Clang::Index> provides Perl bindings to the Clang indexing interface, used
-for extracting high-level symbol information from source files without exposing
-the full Clang C++ API.
-
-B<Attention>: note that this module is still under development and currently
-lacks most of the functionality needed to make it useful.
 
 =head1 METHODS
 

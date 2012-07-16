@@ -2,7 +2,7 @@
 
 use Test::More;
 
-use Clang::Index;
+use Clang;
 
 my $index = Clang::Index -> new(0);
 my $tunit = $index -> parse('t/test.c');

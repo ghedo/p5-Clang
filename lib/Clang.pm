@@ -10,19 +10,31 @@ XSLoader::load('Clang', $Clang::VERSION);
 
 Clang - Perl bindings to the Clang compiler's programming interface
 
+=head1 SYNOPSIS
+
+    use Clang;
+
+    my $index = Clang::Index -> new(1);
+
+    my $tunit = $index -> parse('file.c');
+    my @cursors = $tunit -> cursor -> children;
+
+    foreach my $cursor (@cursors) {
+        say $cursor -> spelling;
+        say $cursor -> kind -> spelling;
+    }
+
 =head1 DESCRIPTION
 
 Clang is a compiler front end for the C, C++, Objective-C, and Objective-C++
 programming languages which uses LLVM as its back end.
 
-This distributions provides Perl bindindings for the libclang library, which
-exposes Clang's functionality through a C/C++ API.
+B<Clang::Index> provides Perl bindings to the Clang indexing interface, used
+for extracting high-level symbol information from source files without exposing
+the full Clang C++ API.
 
-=over 4
-
-=item * L<Clang::Index> - Perl bindings to the Clang Index interface
-
-=back
+B<Attention>: note that this module is still under development and currently
+lacks most of the functionality needed to make it useful.
 
 =head1 AUTHOR
 
