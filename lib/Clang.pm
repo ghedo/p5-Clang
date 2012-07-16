@@ -12,6 +12,8 @@ Clang - Perl bindings to the Clang compiler's indexing interface
 
 =head1 SYNOPSIS
 
+    use v5.10;
+
     use Clang;
 
     my $index = Clang::Index -> new(1);
