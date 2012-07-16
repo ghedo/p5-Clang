@@ -9,8 +9,8 @@ Clang::Index::Cursor - Clang cursor class
 
 =head1 DESCRIPTION
 
-A <Clang::Index::Cursor> represents an element in the abstract syntax tree of a
-translation unit.
+A C<Clang::Index::Cursor> represents an element in the abstract syntax tree of
+a translation unit.
 
 =head1 METHODS
 
