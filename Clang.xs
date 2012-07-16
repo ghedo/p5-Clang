@@ -8,7 +8,6 @@ enum CXChildVisitResult visitor(CXCursor cursor, CXCursor parent, CXClientData d
 	SV *child;
 	AV *children = data;
 
-	puts("lol");
 	CXCursor *ref = malloc(sizeof(CXCursor));
 	*ref = cursor;
 
