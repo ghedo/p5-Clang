@@ -20,7 +20,7 @@ Create a new C<Clang::Index> object.
 
 =head2 parse( $filename )
 
-Parse the file C<$filename> and retrieve the corresponding L<Clang::Index::TUnit>.
+Parse the file C<$filename> and retrieve the corresponding L<Clang::TUnit>.
 
 =head1 AUTHOR
 

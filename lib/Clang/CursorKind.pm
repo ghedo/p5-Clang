@@ -1,26 +1,22 @@
-package Clang::Index::TUnit;
+package Clang::CursorKind;
 
 use strict;
 use warnings;
 
 =head1 NAME
 
-Clang::Index::TUnit - Clang translation unit class
+Clang::CursorKind - Clang cursor kind class
 
 =head1 DESCRIPTION
 
-A C<Clang::Index::TUnit> represents a single translation unit which resides in
-an index.
+A C<Clang::CursorKind> describes the kind of entity that a cursor refers
+to.
 
 =head1 METHODS
 
-=head2 cursor( )
-
-Retrieve the L<Clang::Index::Cursor> corresponding to the given translation unit.
-
 =head2 spelling( )
 
-Retrieve the original translation unit source file name.
+Retrieve the name of the given cursor kind.
 
 =head1 AUTHOR
 
@@ -38,4 +34,4 @@ See http://dev.perl.org/licenses/ for more information.
 
 =cut
 
-1; # End of Clang::Index::TUnit
+1; # End of Clang::CursorKind

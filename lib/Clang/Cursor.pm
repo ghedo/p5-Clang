@@ -1,22 +1,22 @@
-package Clang::Index::Cursor;
+package Clang::Cursor;
 
 use strict;
 use warnings;
 
 =head1 NAME
 
-Clang::Index::Cursor - Clang cursor class
+Clang::Cursor - Clang cursor class
 
 =head1 DESCRIPTION
 
-A C<Clang::Index::Cursor> represents an element in the abstract syntax tree of
-a translation unit.
+A C<Clang::Cursor> represents an element in the abstract syntax tree of a
+translation unit.
 
 =head1 METHODS
 
 =head2 kind( )
 
-Retrieve the L<Clang::Index::CursorKind> of the given cursor.
+Retrieve the L<Clang::CursorKind> of the given cursor.
 
 =head2 spelling( )
 
@@ -29,7 +29,7 @@ Return the display name for the entity referenced by the given cursor.
 =head2 children( )
 
 Retrieve a list of the children of the given cursor. The children are
-C<Clang::Index::Cursor> objects too.
+C<Clang::Cursor> objects too.
 
 =head2 location( )
 
@@ -53,4 +53,4 @@ See http://dev.perl.org/licenses/ for more information.
 
 =cut
 
-1; # End of Clang::Index::Cursor
+1; # End of Clang::Cursor

@@ -11,7 +11,7 @@ enum CXChildVisitResult visitor(CXCursor cursor, CXCursor parent, CXClientData d
 	CXCursor *ref = malloc(sizeof(CXCursor));
 	*ref = cursor;
 
-	child = sv_setref_pv(newSV(0), "Clang::Index::Cursor", (void *) ref);
+	child = sv_setref_pv(newSV(0), "Clang::Cursor", (void *) ref);
 
 	av_push(children, child);
 
@@ -55,7 +55,7 @@ parse(self, file, ...)
 	OUTPUT:
 		RETVAL
 
-MODULE = Clang				PACKAGE = Clang::Index::TUnit
+MODULE = Clang				PACKAGE = Clang::TUnit
 
 CXCursor *
 cursor(self)
@@ -88,7 +88,7 @@ DESTROY(self)
 	CODE:
 		clang_disposeTranslationUnit(self);
 
-MODULE = Clang				PACKAGE = Clang::Index::Cursor
+MODULE = Clang				PACKAGE = Clang::Cursor
 
 enum CXCursorKind
 kind(self)
@@ -169,7 +169,7 @@ DESTROY(self)
 	CODE:
 		free(self);
 
-MODULE = Clang				PACKAGE = Clang::Index::CursorKind
+MODULE = Clang				PACKAGE = Clang::CursorKind
 
 SV *
 spelling(self)
