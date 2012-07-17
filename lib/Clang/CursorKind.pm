@@ -18,6 +18,43 @@ to.
 
 Retrieve the name of the given cursor kind.
 
+=head2 is_declaration( )
+
+Determine whether the given cursor kind represents a declaration.
+
+=head2 is_reference( )
+
+Determine whether the given cursor kind represents a reference.
+
+=head2 is_expression( )
+
+Determine whether the given cursor kind represents an expression.
+
+=head2 is_statement( )
+
+Determine whether the given cursor kind represents a statement.
+
+=head2 is_attribute( )
+
+Determine whether the given cursor kind represents an attribute.
+
+=head2 is_invalid( )
+
+Determine whether the given cursor kind represents an invalid cursor.
+
+=head2 is_tunit( )
+
+Determine whether the given cursor kind represents a translation unit.
+
+=head2 is_preprocessing( )
+
+Determine whether the given cursor kind represents a preprocessing element.
+
+=head2 is_unexposed( )
+
+Determine whether the given cursor kind represents an unexposed piece of the
+AST.
+
 =head1 AUTHOR
 
 Alessandro Ghedini <alexbio@cpan.org>
