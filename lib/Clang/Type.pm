@@ -17,6 +17,10 @@ A L<Clang::Type> represents the type of an element in the AST.
 
 Retrieve the L<Clang::Cursor> that points to the declaration of the given type.
 
+=head2 kind( )
+
+Retrieve the L<Clang::TypeKind> of the given type.
+
 =head2 is_const( )
 
 Determine whether the given type has the "const" qualifier.
