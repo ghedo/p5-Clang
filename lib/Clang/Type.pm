@@ -9,7 +9,7 @@ Clang::Type - Clang type class
 
 =head1 DESCRIPTION
 
-A L<Clang::Type> represents the type of an element in the AST.
+A C<Clang::Type> represents the type of an element in the AST.
 
 =head1 METHODS
 
