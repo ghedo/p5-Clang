@@ -9,8 +9,7 @@ Clang::CursorKind - Clang cursor kind class
 
 =head1 DESCRIPTION
 
-A C<Clang::CursorKind> describes the kind of entity that a cursor refers
-to.
+A C<Clang::CursorKind> describes the kind of entity that a cursor refers to.
 
 =head1 METHODS
 

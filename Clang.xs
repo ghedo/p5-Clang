@@ -100,6 +100,19 @@ kind(self)
 	OUTPUT:
 		RETVAL
 
+CXType *
+type(self)
+	CXCursor *self
+
+	CODE:
+		CXType *retval = malloc(sizeof(CXType));
+		CXType type = clang_getCursorType(*self);
+		*retval = type;
+		RETVAL = retval;
+
+	OUTPUT:
+		RETVAL
+
 SV *
 spelling(self)
 	CXCursor *self
@@ -268,6 +281,85 @@ is_unexposed(self)
 
 	CODE:
 		RETVAL = clang_isUnexposed(self) ? &PL_sv_yes : &PL_sv_no;
+
+	OUTPUT:
+		RETVAL
+
+MODULE = Clang				PACKAGE = Clang::Type
+
+CXCursor *
+declaration(self)
+	CXType *self
+
+	CODE:
+		CXCursor *retval = malloc(sizeof(CXCursor));
+		CXCursor cursor  = clang_getTypeDeclaration(*self);
+		*retval = cursor;
+
+		RETVAL = retval;
+
+	OUTPUT:
+		RETVAL
+
+enum CXTypeKind
+kind(self)
+	CXType *self
+
+	CODE:
+		RETVAL = self -> kind;
+	
+	OUTPUT:
+		RETVAL
+
+SV *
+is_const(self)
+	CXType *self
+
+	CODE:
+		RETVAL = clang_isConstQualifiedType(*self) ?
+			&PL_sv_yes : &PL_sv_no;
+
+	OUTPUT:
+		RETVAL
+
+SV *
+is_volatile(self)
+	CXType *self
+
+	CODE:
+		RETVAL = clang_isVolatileQualifiedType(*self) ?
+			&PL_sv_yes : &PL_sv_no;
+
+	OUTPUT:
+		RETVAL
+
+SV *
+is_restrict(self)
+	CXType *self
+
+	CODE:
+		RETVAL = clang_isRestrictQualifiedType(*self) ?
+			&PL_sv_yes : &PL_sv_no;
+
+	OUTPUT:
+		RETVAL
+
+void
+DESTROY(self)
+	CXType *self
+
+	CODE:
+		free(self);
+
+MODULE = Clang				PACKAGE = Clang::TypeKind
+
+SV *
+spelling(self)
+	enum CXTypeKind self
+
+	CODE:
+		CXString spelling = clang_getTypeKindSpelling(self);
+		RETVAL = newSVpv(clang_getCString(spelling), 0);
 
 	OUTPUT:
 		RETVAL

@@ -18,6 +18,10 @@ translation unit.
 
 Retrieve the L<Clang::CursorKind> of the given cursor.
 
+=head2 type( )
+
+Retrieve the L<Clang::Type> of the entity referenced by the given cursor.
+
 =head2 spelling( )
 
 Retrieve the name for the entity referenced by the given cursor.

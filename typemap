@@ -2,6 +2,8 @@ CXIndex				T_CLANG_INDEX
 CXTranslationUnit		T_CLANG_INDEX_TUNIT
 CXCursor *			T_CLANG_INDEX_CURSOR
 enum CXCursorKind		T_CLANG_INDEX_CURSOR_KIND
+CXType *			T_CLANG_INDEX_TYPE
+enum CXTypeKind			T_CLANG_INDEX_TYPE_KIND
 
 OUTPUT
 T_CLANG_INDEX
@@ -12,6 +14,10 @@ T_CLANG_INDEX_CURSOR
 	sv_setref_pv($arg, \"Clang::Cursor\", (void *) $var);
 T_CLANG_INDEX_CURSOR_KIND
 	sv_setref_iv($arg, \"Clang::CursorKind\", $var);
+T_CLANG_INDEX_TYPE
+	sv_setref_pv($arg, \"Clang::Type\", (void *) $var);
+T_CLANG_INDEX_TYPE_KIND
+	sv_setref_iv($arg, \"Clang::TypeKind\", $var);
 
 INPUT
 T_CLANG_INDEX
@@ -34,3 +40,13 @@ T_CLANG_INDEX_CURSOR_KIND
 		$var = SvIV((SV *) SvRV($arg));
 	else
 		Perl_croak(aTHX_ \"$var is not of type Clang::CursorKind\");
+T_CLANG_INDEX_TYPE
+	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::Type\"))
+		$var = INT2PTR($type, SvIV((SV *) SvRV($arg)));
+	else
+		Perl_croak(aTHX_ \"$var is not of type Clang::Type\");
+T_CLANG_INDEX_TYPE_KIND
+	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::TypeKind\"))
+		$var = SvIV((SV *) SvRV($arg));
+	else
+		Perl_croak(aTHX_ \"$var is not of type Clang::TypeKind\");
