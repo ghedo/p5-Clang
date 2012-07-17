@@ -1,0 +1,6 @@
+* cursor kind is* methods
+* cursor type support
+* token support
+* diagnostics support
+* code completion support
+* other (see python's cindex)
