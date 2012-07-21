@@ -4,6 +4,13 @@
 
 #include <clang-c/Index.h>
 
+typedef CXIndex			Index;
+typedef CXTranslationUnit	TUnit;
+typedef CXCursor *		Cursor;
+typedef enum CXCursorKind	CursorKind;
+typedef CXType *		Type;
+typedef enum CXTypeKind		TypeKind;
+
 enum CXChildVisitResult visitor(CXCursor cursor, CXCursor parent, CXClientData data) {
 	SV *child;
 	AV *children = data;

@@ -1,11 +1,11 @@
 MODULE = Clang				PACKAGE = Clang::Type
 
-CXCursor *
+Cursor
 declaration(self)
-	CXType *self
+	Type self
 
 	CODE:
-		CXCursor *retval = malloc(sizeof(CXCursor));
+		Cursor retval = malloc(sizeof(CXCursor));
 		CXCursor cursor  = clang_getTypeDeclaration(*self);
 		*retval = cursor;
 
@@ -14,19 +14,19 @@ declaration(self)
 	OUTPUT:
 		RETVAL
 
-enum CXTypeKind
+TypeKind
 kind(self)
-	CXType *self
+	Type self
 
 	CODE:
 		RETVAL = self -> kind;
-	
+
 	OUTPUT:
 		RETVAL
 
 SV *
 is_const(self)
-	CXType *self
+	Type self
 
 	CODE:
 		RETVAL = clang_isConstQualifiedType(*self) ?
@@ -37,7 +37,7 @@ is_const(self)
 
 SV *
 is_volatile(self)
-	CXType *self
+	Type self
 
 	CODE:
 		RETVAL = clang_isVolatileQualifiedType(*self) ?
@@ -48,7 +48,7 @@ is_volatile(self)
 
 SV *
 is_restrict(self)
-	CXType *self
+	Type self
 
 	CODE:
 		RETVAL = clang_isRestrictQualifiedType(*self) ?
@@ -59,7 +59,7 @@ is_restrict(self)
 
 void
 DESTROY(self)
-	CXType *self
+	Type self
 
 	CODE:
 		free(self);

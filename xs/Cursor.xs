@@ -1,8 +1,8 @@
 MODULE = Clang				PACKAGE = Clang::Cursor
 
-enum CXCursorKind
+CursorKind
 kind(self)
-	CXCursor *self
+	Cursor self
 
 	CODE:
 		RETVAL = clang_getCursorKind(*self);
@@ -10,9 +10,9 @@ kind(self)
 	OUTPUT:
 		RETVAL
 
-CXType *
+Type
 type(self)
-	CXCursor *self
+	Cursor self
 
 	CODE:
 		CXType *retval = malloc(sizeof(CXType));
@@ -25,7 +25,7 @@ type(self)
 
 SV *
 spelling(self)
-	CXCursor *self
+	Cursor self
 
 	CODE:
 		CXString spelling = clang_getCursorSpelling(*self);
@@ -36,7 +36,7 @@ spelling(self)
 
 SV *
 displayname(self)
-	CXCursor *self
+	Cursor self
 
 	CODE:
 		CXString dname = clang_getCursorDisplayName(*self);
@@ -47,7 +47,7 @@ displayname(self)
 
 AV *
 children(self)
-	CXCursor *self
+	Cursor self
 
 	CODE:
 		AV *children = newAV();
@@ -63,7 +63,7 @@ children(self)
 
 void
 location(self)
-	CXCursor *self
+	Cursor self
 
 	INIT:
 		CXFile file;
@@ -87,7 +87,7 @@ location(self)
 
 void
 DESTROY(self)
-	CXCursor *self
+	Cursor self
 
 	CODE:
 		free(self);

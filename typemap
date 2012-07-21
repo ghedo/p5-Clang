@@ -1,52 +1,24 @@
-CXIndex				T_CLANG_INDEX
-CXTranslationUnit		T_CLANG_INDEX_TUNIT
-CXCursor *			T_CLANG_INDEX_CURSOR
-enum CXCursorKind		T_CLANG_INDEX_CURSOR_KIND
-CXType *			T_CLANG_INDEX_TYPE
-enum CXTypeKind			T_CLANG_INDEX_TYPE_KIND
+Index					T_CLANG_REF
+TUnit					T_CLANG_REF
+Cursor					T_CLANG_REF
+CursorKind				T_CLANG_INT
+Type					T_CLANG_REF
+TypeKind				T_CLANG_INT
 
 OUTPUT
-T_CLANG_INDEX
-	sv_setref_pv($arg, \"Clang::Index\", (void *) $var);
-T_CLANG_INDEX_TUNIT
-	sv_setref_pv($arg, \"Clang::TUnit\", (void *) $var);
-T_CLANG_INDEX_CURSOR
-	sv_setref_pv($arg, \"Clang::Cursor\", (void *) $var);
-T_CLANG_INDEX_CURSOR_KIND
-	sv_setref_iv($arg, \"Clang::CursorKind\", $var);
-T_CLANG_INDEX_TYPE
-	sv_setref_pv($arg, \"Clang::Type\", (void *) $var);
-T_CLANG_INDEX_TYPE_KIND
-	sv_setref_iv($arg, \"Clang::TypeKind\", $var);
+T_CLANG_REF
+	sv_setref_pv($arg, \"Clang::${type}\", (void *) $var);
+T_CLANG_INT
+	sv_setref_iv($arg, \"Clang::${type}\", $var);
 
 INPUT
-T_CLANG_INDEX
-	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::Index\"))
+T_CLANG_REF
+	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::${type}\"))
 		$var = INT2PTR($type, SvIV((SV *) SvRV($arg)));
 	else
-		Perl_croak(aTHX_ \"$var is not of type Clang::Index\");
-T_CLANG_INDEX_TUNIT
-	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::TUnit\"))
-		$var = INT2PTR($type, SvIV((SV *) SvRV($arg)));
-	else
-		Perl_croak(aTHX_ \"$var is not of type Clang::TUnit\");
-T_CLANG_INDEX_CURSOR
-	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::Cursor\"))
-		$var = INT2PTR($type, SvIV((SV *) SvRV($arg)));
-	else
-		Perl_croak(aTHX_ \"$var is not of type Clang::Cursor\");
-T_CLANG_INDEX_CURSOR_KIND
-	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::CursorKind\"))
+		Perl_croak(aTHX_ \"$var is not of type Clang::${type}\");
+T_CLANG_INT
+	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::${type}\"))
 		$var = SvIV((SV *) SvRV($arg));
 	else
-		Perl_croak(aTHX_ \"$var is not of type Clang::CursorKind\");
-T_CLANG_INDEX_TYPE
-	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::Type\"))
-		$var = INT2PTR($type, SvIV((SV *) SvRV($arg)));
-	else
-		Perl_croak(aTHX_ \"$var is not of type Clang::Type\");
-T_CLANG_INDEX_TYPE_KIND
-	if (sv_isobject($arg) && sv_derived_from($arg, \"Clang::TypeKind\"))
-		$var = SvIV((SV *) SvRV($arg));
-	else
-		Perl_croak(aTHX_ \"$var is not of type Clang::TypeKind\");
+		Perl_croak(aTHX_ \"$var is not of type Clang::${type}\");

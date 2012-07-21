@@ -1,11 +1,11 @@
 MODULE = Clang				PACKAGE = Clang::TUnit
 
-CXCursor *
+Cursor
 cursor(self)
-	CXTranslationUnit self
+	TUnit self
 
 	CODE:
-		CXCursor *retval = malloc(sizeof(CXCursor));
+		Cursor retval = malloc(sizeof(CXCursor));
 		CXCursor cursor = clang_getTranslationUnitCursor(self);
 		*retval = cursor;
 		RETVAL = retval;
@@ -15,7 +15,7 @@ cursor(self)
 
 SV *
 spelling(self)
-	CXTranslationUnit self
+	TUnit self
 
 	CODE:
 		CXString spelling = clang_getTranslationUnitSpelling(self);
@@ -26,7 +26,7 @@ spelling(self)
 
 void
 DESTROY(self)
-	CXTranslationUnit self
+	TUnit self
 
 	CODE:
 		clang_disposeTranslationUnit(self);

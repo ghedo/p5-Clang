@@ -1,6 +1,6 @@
 MODULE = Clang				PACKAGE = Clang::Index
 
-CXIndex
+Index
 new(class, exclude_decls)
 	SV *class
 	int exclude_decls
@@ -13,20 +13,20 @@ new(class, exclude_decls)
 
 void
 DESTROY(self)
-	CXIndex self
+	Index self
 
 	CODE:
 		clang_disposeIndex(self);
 
-CXTranslationUnit
+TUnit
 parse(self, file, ...)
-	CXIndex self
+	Index self
 	SV *file
 
 	CODE:
 		STRLEN len;
 		const char *path = SvPVbyte(file, len);
-		CXTranslationUnit tu = clang_parseTranslationUnit(
+		TUnit tu = clang_parseTranslationUnit(
 			self, path, NULL, 0, NULL, 0, 0
 		);
 

@@ -2,7 +2,7 @@ MODULE = Clang				PACKAGE = Clang::TypeKind
 
 SV *
 spelling(self)
-	enum CXTypeKind self
+	TypeKind self
 
 	CODE:
 		CXString spelling = clang_getTypeKindSpelling(self);
