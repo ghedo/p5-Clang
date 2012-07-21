@@ -52,8 +52,6 @@ children(self)
 	CODE:
 		AV *children = newAV();
 
-		CXString spelling = clang_getCursorSpelling(*self);
-		puts(clang_getCString(spelling));
 		clang_visitChildren(*self, visitor, children);
 
 		RETVAL = children;
