@@ -11,8 +11,7 @@ declaration(self)
 
 		RETVAL = retval;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 TypeKind
 kind(self)
@@ -21,8 +20,7 @@ kind(self)
 	CODE:
 		RETVAL = self -> kind;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 is_const(self)
@@ -32,8 +30,7 @@ is_const(self)
 		RETVAL = clang_isConstQualifiedType(*self) ?
 			&PL_sv_yes : &PL_sv_no;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 is_volatile(self)
@@ -43,8 +40,7 @@ is_volatile(self)
 		RETVAL = clang_isVolatileQualifiedType(*self) ?
 			&PL_sv_yes : &PL_sv_no;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 is_restrict(self)
@@ -54,8 +50,7 @@ is_restrict(self)
 		RETVAL = clang_isRestrictQualifiedType(*self) ?
 			&PL_sv_yes : &PL_sv_no;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 void
 DESTROY(self)

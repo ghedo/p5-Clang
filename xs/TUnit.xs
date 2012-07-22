@@ -10,8 +10,7 @@ cursor(self)
 		*retval = cursor;
 		RETVAL = retval;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 spelling(self)
@@ -21,8 +20,7 @@ spelling(self)
 		CXString spelling = clang_getTranslationUnitSpelling(self);
 		RETVAL = newSVpv(clang_getCString(spelling), 0);
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 void
 DESTROY(self)

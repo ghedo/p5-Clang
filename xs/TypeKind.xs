@@ -8,5 +8,4 @@ spelling(self)
 		CXString spelling = clang_getTypeKindSpelling(self);
 		RETVAL = newSVpv(clang_getCString(spelling), 0);
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL

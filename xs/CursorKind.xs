@@ -8,8 +8,7 @@ spelling(self)
 		CXString spelling = clang_getCursorKindSpelling(self);
 		RETVAL = newSVpv(clang_getCString(spelling), 0);
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 is_declaration(self)
@@ -18,8 +17,7 @@ is_declaration(self)
 	CODE:
 		RETVAL = clang_isDeclaration(self) ? &PL_sv_yes : &PL_sv_no;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 is_reference(self)
@@ -28,8 +26,7 @@ is_reference(self)
 	CODE:
 		RETVAL = clang_isReference(self) ? &PL_sv_yes : &PL_sv_no;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 is_expression(self)
@@ -38,8 +35,7 @@ is_expression(self)
 	CODE:
 		RETVAL = clang_isExpression(self) ? &PL_sv_yes : &PL_sv_no;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 is_statement(self)
@@ -48,8 +44,7 @@ is_statement(self)
 	CODE:
 		RETVAL = clang_isStatement(self) ? &PL_sv_yes : &PL_sv_no;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 is_attribute(self)
@@ -58,8 +53,7 @@ is_attribute(self)
 	CODE:
 		RETVAL = clang_isAttribute(self) ? &PL_sv_yes : &PL_sv_no;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 is_invalid(self)
@@ -68,8 +62,7 @@ is_invalid(self)
 	CODE:
 		RETVAL = clang_isInvalid(self) ? &PL_sv_yes : &PL_sv_no;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 is_tunit(self)
@@ -78,8 +71,7 @@ is_tunit(self)
 	CODE:
 		RETVAL = clang_isTranslationUnit(self) ? &PL_sv_yes : &PL_sv_no;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 is_preprocessing(self)
@@ -88,8 +80,7 @@ is_preprocessing(self)
 	CODE:
 		RETVAL = clang_isPreprocessing(self) ? &PL_sv_yes : &PL_sv_no;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 is_unexposed(self)
@@ -98,5 +89,4 @@ is_unexposed(self)
 	CODE:
 		RETVAL = clang_isUnexposed(self) ? &PL_sv_yes : &PL_sv_no;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL

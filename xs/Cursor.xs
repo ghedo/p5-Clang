@@ -7,8 +7,7 @@ kind(self)
 	CODE:
 		RETVAL = clang_getCursorKind(*self);
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 Type
 type(self)
@@ -20,8 +19,7 @@ type(self)
 		*retval = type;
 		RETVAL = retval;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 spelling(self)
@@ -31,8 +29,7 @@ spelling(self)
 		CXString spelling = clang_getCursorSpelling(*self);
 		RETVAL = newSVpv(clang_getCString(spelling), 0);
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 SV *
 displayname(self)
@@ -42,8 +39,7 @@ displayname(self)
 		CXString dname = clang_getCursorDisplayName(*self);
 		RETVAL = newSVpv(clang_getCString(dname), 0);
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 AV *
 children(self)
@@ -56,8 +52,7 @@ children(self)
 
 		RETVAL = children;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 void
 location(self)

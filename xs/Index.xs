@@ -8,8 +8,7 @@ new(class, exclude_decls)
 	CODE:
 		RETVAL = clang_createIndex(exclude_decls, 0);
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
 
 void
 DESTROY(self)
@@ -32,5 +31,4 @@ parse(self, file, ...)
 
 		RETVAL = tu;
 
-	OUTPUT:
-		RETVAL
+	OUTPUT: RETVAL
