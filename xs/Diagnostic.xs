@@ -42,3 +42,9 @@ location(self)
 
 		mXPUSHi(line);
 		mXPUSHi(column);
+
+void DESTROY(self)
+	Diagnostic self
+
+	CODE:
+		clang_disposeDiagnostic(self);
