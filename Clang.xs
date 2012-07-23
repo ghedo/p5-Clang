@@ -10,6 +10,7 @@ typedef CXCursor *		Cursor;
 typedef enum CXCursorKind	CursorKind;
 typedef CXType *		Type;
 typedef enum CXTypeKind		TypeKind;
+typedef CXDiagnostic		Diagnostic;
 
 enum CXChildVisitResult visitor(CXCursor cursor, CXCursor parent, CXClientData data) {
 	SV *child;
@@ -33,3 +34,4 @@ INCLUDE: xs/Cursor.xs
 INCLUDE: xs/CursorKind.xs
 INCLUDE: xs/Type.xs
 INCLUDE: xs/TypeKind.xs
+INCLUDE: xs/Diagnostic.xs

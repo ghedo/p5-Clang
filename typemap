@@ -4,6 +4,7 @@ Cursor					T_CLANG_REF
 CursorKind				T_CLANG_INT
 Type					T_CLANG_REF
 TypeKind				T_CLANG_INT
+Diagnostic				T_CLANG_REF
 
 OUTPUT
 T_CLANG_REF

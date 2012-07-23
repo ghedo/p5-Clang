@@ -21,6 +21,10 @@ Retrieve the L<Clang::Cursor> corresponding to the given translation unit.
 
 Retrieve the original translation unit source file name.
 
+=head2 diagnostics( )
+
+Retrieve the L<Clang::Diagnostic>s associated with the given C<Clang::TUnit>.
+
 =head1 AUTHOR
 
 Alessandro Ghedini <alexbio@cpan.org>
