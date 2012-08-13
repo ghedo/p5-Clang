@@ -23,8 +23,7 @@ parse(self, file, ...)
 	SV *file
 
 	CODE:
-		STRLEN len;
-		const char *path = SvPVbyte(file, len);
+		const char *path = SvPVbyte_nolen(file);
 		TUnit tu = clang_parseTranslationUnit(
 			self, path, NULL, 0, NULL, 0, 0
 		);
