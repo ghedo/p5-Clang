@@ -8,7 +8,7 @@ extends 'Dist::Zilla::Plugin::MakeMaker::Awesome';
 override _build_MakeFile_PL_template => sub {
 	my ($self) = @_;
 	my $template  = "use Devel::CheckLib;\n";
-	$template .= "check_lib_or_exit(lib => 'clang');\n";
+	$template .= "check_lib_or_exit(libpath => '/usr/lib/llvm-3.3/lib', lib => 'clang');\n";
 
 	return $template.super();
 };
@@ -16,8 +16,8 @@ override _build_MakeFile_PL_template => sub {
 override _build_WriteMakefile_args => sub {
 	return +{
 		%{ super() },
-		LIBS	=> '-lclang',
-		INC	=> '-I.',
+		LIBS	=> '-L/usr/lib/llvm-3.3/lib -lclang',
+		INC	=> '-I. -I/usr/lib/llvm-3.3/include',
 		OBJECT	=> '$(O_FILES)',
 	}
 };
