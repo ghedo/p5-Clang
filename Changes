@@ -1,0 +1,43 @@
+Revision history for Clang
+
+{{$NEXT}}
+
+ - Do not suggest perl version in the example
+ - Various test fixes
+
+0.06      2012-08-20 13:20:25 Europe/Rome
+
+ - Assorted fixes
+
+0.05      2012-07-23 20:09:25 Europe/Rome
+
+ - Add Clang::Diagnostic class
+
+0.04      2012-07-22 12:44:01 Europe/Rome
+
+ - Improve documentation (no functional changes)
+ - Remove debug output
+
+0.03      2012-07-17 12:21:56 Europe/Rome
+
+ - Rename Clang::Index::* modules to Clang::* (incompatible change)
+ - Add methods to Clang::CursorKind:
+    + is_declaration()
+    + is_reference( )
+    + is_expression()
+    + is_statement()
+    + is_attribute()
+    + is_invalid()
+    + is_tunit()
+    + is_preprocessing()
+    + is_unexposed()
+ - Add Clang -> type() method and Clang::Type class
+ - Improve documentation (no functional changes)
+
+0.02      2012-07-16 12:30:41 Europe/Rome
+
+ - Improve documentation (no functional changes)
+
+0.01      2012-07-16 12:04:55 Europe/Rome
+
+ - Initial version
