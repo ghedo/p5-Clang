@@ -13,7 +13,14 @@ is($cursr -> type -> kind -> spelling, 'Invalid');
 my $cursors = $cursr -> children;
 
 my @spellings = map { $_ -> type -> kind -> spelling } @$cursors;
-my @expected = qw(Typedef Typedef Record Typedef Typedef FunctionProto FunctionProto);
+my @expected  = qw(
+	Typedef
+	Typedef
+	Typedef
+	FunctionProto
+	FunctionProto
+);
+
 is_deeply(\@spellings, \@expected);
 
 done_testing;

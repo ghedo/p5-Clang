@@ -14,9 +14,13 @@ is($kind -> spelling, 'TranslationUnit');
 my $cursors = $cursr -> children;
 
 my @spellings = map { $_ -> kind -> spelling } @$cursors;
-
-my @expected = qw(TypedefDecl TypedefDecl StructDecl TypedefDecl TypedefDecl
-	FunctionDecl FunctionDecl);
+my @expected  = qw(
+	TypedefDecl
+	TypedefDecl
+	TypedefDecl
+	FunctionDecl
+	FunctionDecl
+);
 is_deeply(\@spellings, \@expected);
 
 done_testing;
