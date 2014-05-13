@@ -2,6 +2,7 @@ Revision history for Clang
 
 {{$NEXT}}
 
+ - Build with libclang v3.3
  - Do not suggest perl version in the example
  - Various test fixes
 
