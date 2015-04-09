@@ -10,7 +10,7 @@ perl:
 
 install:
  - sudo apt-get install libclang-dev
- - cpanm --notest Dist::Zilla Dist::Zilla::PluginBundle::Author::ALEXBIO
+ - cpanm --notest Dist::Zilla Dist::Zilla::PluginBundle::Author::ALEXBIO Devel::CheckLib
  - dzil listdeps --missing | cpanm --notest
 
 script:
