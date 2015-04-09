@@ -9,7 +9,7 @@ perl:
  - "5.20"
 
 install:
- - sudo apt-get install libclang-dev
+ - sudo apt-get install cpanminus libclang-dev libdist-zilla-perl
  - cpanm --notest Dist::Zilla Dist::Zilla::PluginBundle::Author::ALEXBIO Devel::CheckLib Test::Pod::Coverage Pod::Coverage::TrustPod Test::Pod
  - dzil listdeps --missing | cpanm --notest
 
