@@ -9,8 +9,12 @@ perl:
  - "5.20"
 
 install:
- - sudo apt-get install libclang-dev
- - cpanm --notest Dist::Zilla Dist::Zilla::PluginBundle::Author::ALEXBIO
+ - sudo sh -c "echo 'deb http://llvm.org/apt/precise/ llvm-toolchain-precise-3.5 main' >> /etc/apt/sources.list"
+ - sudo sh -c "echo 'deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu precise main' >> /etc/apt/sources.list"
+ - wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
+ - sudo apt-get --force-yes update
+ - sudo apt-get install --allow-unauthenticated -qq cpanminus libclang-3.5-dev libdist-zilla-perl
+ - cpanm --notest Dist::Zilla Dist::Zilla::PluginBundle::Author::ALEXBIO Devel::CheckLib Test::Pod::Coverage Pod::Coverage::TrustPod Test::Pod
  - dzil listdeps --missing | cpanm --notest
 
 script:

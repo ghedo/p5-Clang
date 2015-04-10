@@ -14,9 +14,6 @@ my $cursors = $cursr -> children;
 
 my @spellings = map { $_ -> type -> kind -> spelling } @$cursors;
 my @expected  = qw(
-	Typedef
-	Typedef
-	Typedef
 	FunctionProto
 	FunctionProto
 );
