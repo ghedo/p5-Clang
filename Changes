@@ -2,6 +2,8 @@ Revision history for Clang
 
 {{$NEXT}}
 
+0.07      2015-04-23 20:09:52+02:00 Europe/Rome
+
  - Build with libclang v3.5
  - Do not suggest perl version in the example
  - Various test fixes
