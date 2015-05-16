@@ -61,12 +61,18 @@ location(self)
 	INIT:
 		CXFile file;
 		const char *filename;
-		unsigned int line, column, offset;
+		unsigned int line, column, offset,line_end,column_end;
 
 	PPCODE:
 		CXSourceLocation loc = clang_getCursorLocation(*self);
 
+		CXSourceRange range = clang_getCursorExtent(*self);
+	
+		CXSourceLocation locEnd = clang_getRangeEnd(range);
+		
 		clang_getSpellingLocation(loc, &file, &line, &column, NULL);
+
+		clang_getSpellingLocation(locEnd,NULL,&line_end,&column_end,NULL);		
 
 		filename = clang_getCString(clang_getFileName(file));
 
@@ -77,6 +83,7 @@ location(self)
 
 		mXPUSHi(line);
 		mXPUSHi(column);
+		mXPUSHi(line_end);
 
 void
 DESTROY(self)
