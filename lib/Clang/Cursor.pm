@@ -37,9 +37,10 @@ C<Clang::Cursor> objects too.
 
 =head2 location( )
 
-Retrieve the location of the given cursor. This function returns three values,
-a string containing the source file name, an integer containing the line number
-and another integer containing the column number.
+Retrieve the location of the given cursor. This function returns five values: a
+string containing the source file name, an integer containing the initial line
+number, an integer containing the initial column number, an integer containing
+the final line number, and another integer containing the final column number.
 
 =head1 AUTHOR
 
