@@ -39,6 +39,14 @@ is_deeply(\@locations, \@expected);
 );
 is_deeply(\@locations, \@expected);
 
+@access = map { join ' ', $_ -> get_access_specifier } @$cursors;
+@expected = (
+		'invalid',
+		'invalid'
+);
+is_deeply(\@access,\@expected);
+
+
 #doing the same test on a cpp file
 
 $index = Clang::Index -> new(0);
@@ -76,4 +84,19 @@ is_deeply(\@locations, \@expected);
 );
 is_deeply(\@locations, \@expected);
 
+$cursors = @$cursors[0] -> children;
+
+@access = map { join ' ', $_ -> get_access_specifier } @$cursors;
+@expected = (
+		'public',
+		'public',
+		'public',
+		'public',
+		'private',
+		'private',
+		'private'
+);
+is_deeply(\@access,\@expected);
+
 done_testing;
+

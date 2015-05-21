@@ -41,6 +41,12 @@ Retrieve the location of the given cursor. This function returns three values,
 a string containing the source file name, an integer containing the line number
 and another integer containing the column number.
 
+=head2 get_access_specifier( )
+
+Retrieve the access of the given cursor. This function returns a string with
+the name of the access: invalid, public, protected and private. The C functions
+will return invalid for this function.
+
 =head1 AUTHOR
 
 Alessandro Ghedini <alexbio@cpan.org>
