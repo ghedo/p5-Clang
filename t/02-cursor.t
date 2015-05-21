@@ -24,11 +24,79 @@ is_deeply(\@spellings, \@expected);
 my ($file, $line, $column) = $cursr -> location;
 is($file, ''); is($line, 0); is($column, 0);
 
-my @locations = map { join ' ', $_ -> location } @$cursors;
+
+my @locations = map { join ' ', my($file,$line,$column) = $_ -> location } @$cursors;
 @expected     = (
 	't/test.c 1 6',
 	't/test.c 7 5'
 );
 is_deeply(\@locations, \@expected);
 
+@locations = map { join ' ', $_ -> location } @$cursors;
+@expected     = (
+	't/test.c 1 6 5',
+	't/test.c 7 5 11'
+);
+is_deeply(\@locations, \@expected);
+
+@access = map { join ' ', $_ -> get_access_specifier } @$cursors;
+@expected = (
+		'invalid',
+		'invalid'
+);
+is_deeply(\@access,\@expected);
+
+
+#doing the same test on a cpp file
+
+$index = Clang::Index -> new(0);
+$tunit = $index -> parse('t/main.cpp');
+$cursr = $tunit -> cursor;
+
+is($cursr -> spelling, 't/main.cpp');
+is($cursr -> displayname, 't/main.cpp');
+
+$cursors = $cursr -> children;
+
+@spellings = map { $_ -> spelling } @$cursors;
+@expected  = qw(
+	Person
+	main
+);
+
+is_deeply(\@spellings, \@expected);
+
+($file, $line, $column) = $cursr -> location;
+is($file, ''); is($line, 0); is($column, 0);
+
+
+@locations = map { join ' ', my($file,$line,$column) = $_ -> location } @$cursors;
+@expected     = (
+	't/person.h 4 7',
+	't/main.cpp 3 5'
+);
+is_deeply(\@locations, \@expected);
+
+@locations = map { join ' ', $_ -> location } @$cursors;
+@expected     = (
+	't/person.h 4 7 16',
+	't/main.cpp 3 5 6'
+);
+is_deeply(\@locations, \@expected);
+
+$cursors = @$cursors[0] -> children;
+
+@access = map { join ' ', $_ -> get_access_specifier } @$cursors;
+@expected = (
+		'public',
+		'public',
+		'public',
+		'public',
+		'private',
+		'private',
+		'private'
+);
+is_deeply(\@access,\@expected);
+
 done_testing;
+

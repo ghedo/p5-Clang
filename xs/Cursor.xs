@@ -61,12 +61,18 @@ location(self)
 	INIT:
 		CXFile file;
 		const char *filename;
-		unsigned int line, column, offset;
+		unsigned int line, column, offset,line_end,column_end;
 
 	PPCODE:
 		CXSourceLocation loc = clang_getCursorLocation(*self);
 
+		CXSourceRange range = clang_getCursorExtent(*self);
+	
+		CXSourceLocation locEnd = clang_getRangeEnd(range);
+		
 		clang_getSpellingLocation(loc, &file, &line, &column, NULL);
+
+		clang_getSpellingLocation(locEnd,NULL,&line_end,&column_end,NULL);		
 
 		filename = clang_getCString(clang_getFileName(file));
 
@@ -77,6 +83,32 @@ location(self)
 
 		mXPUSHi(line);
 		mXPUSHi(column);
+		mXPUSHi(line_end);
+
+SV * 
+get_access_specifier(self)
+	Cursor self
+	
+	CODE:
+		enum CX_CXXAccessSpecifier access = clang_getCXXAccessSpecifier(*self);			
+		
+		const char *accessStr = 0;
+
+	      	switch (access) {
+			case CX_CXXInvalidAccessSpecifier:
+		  		accessStr = "invalid"; break;
+			case CX_CXXPublic:
+		  		accessStr = "public"; break;
+			case CX_CXXProtected:
+		  		accessStr = "protected"; break;
+			case CX_CXXPrivate:
+		  		accessStr = "private"; break;
+	      	}
+      
+		RETVAL = newSVpv(accessStr,0);
+
+	OUTPUT: RETVAL
+
 
 void
 DESTROY(self)
