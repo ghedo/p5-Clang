@@ -42,6 +42,12 @@ string containing the source file name, an integer containing the initial line
 number, an integer containing the initial column number, an integer containing
 the final line number, and another integer containing the final column number.
 
+=head2 access_specifier( )
+
+Retrieve the access of the given cursor. This can return the following values:
+C<invalid>, C<public>, C<protected> or C<private>. Note that this only works
+for C++ code, it will return C<invalid> for C functions.
+
 =head1 AUTHOR
 
 Alessandro Ghedini <alexbio@cpan.org>

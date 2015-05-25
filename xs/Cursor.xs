@@ -85,6 +85,38 @@ location(self)
 		mXPUSHi(line_end);
 		mXPUSHi(col_end);
 
+SV *
+access_specifier(self)
+	Cursor self
+
+	CODE:
+		enum CX_CXXAccessSpecifier access =
+			clang_getCXXAccessSpecifier(*self);
+
+		const char *accessStr = 0;
+
+		switch (access) {
+			case CX_CXXInvalidAccessSpecifier:
+				accessStr = "invalid";
+				break;
+
+			case CX_CXXPublic:
+				accessStr = "public";
+				break;
+
+			case CX_CXXProtected:
+				accessStr = "protected";
+				break;
+
+			case CX_CXXPrivate:
+				accessStr = "private";
+				break;
+		}
+
+		RETVAL = newSVpv(accessStr, 0);
+
+	OUTPUT: RETVAL
+
 void
 DESTROY(self)
 	Cursor self

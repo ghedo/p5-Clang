@@ -58,4 +58,18 @@ is($file, ''); is($line, 0); is($column, 0);
 );
 is_deeply(\@locations, \@expected);
 
+$cursors = @$cursors[0] -> children;
+
+@access = map { join ' ', $_ -> access_specifier } @$cursors;
+@expected = (
+		'public',
+		'public',
+		'public',
+		'public',
+		'private',
+		'private',
+		'private'
+);
+is_deeply(\@access,\@expected);
+
 done_testing;
