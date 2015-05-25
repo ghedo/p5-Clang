@@ -3,12 +3,13 @@ Revision history for Clang
 {{$NEXT}}
 
  - Return cursor's final line and column from Cursor -> location()
-   (GH#3) (thank, @gutorc92)
- - Add method to retireve cursor's access specifier (GH#4) (thank, @gutorc92)
+   (GH#3) (thank, @gutorc92!)
+ - Add method to retrieve cursor's access specifier (GH#4)
+   (thank, @gutorc92 and @lucasmoura!)
 
 0.07      2015-04-23 20:09:52+02:00 Europe/Rome
 
- - Build with libclang v3.5 (GH#2) (thanks, @ArthurJahn)
+ - Build with libclang v3.5 (GH#2) (thanks, @ArthurJahn!)
  - Do not suggest perl version in the example
  - Various test fixes
 
