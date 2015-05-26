@@ -2,6 +2,8 @@ Revision history for Clang
 
 {{$NEXT}}
 
+0.08      2015-05-26 14:00:26+02:00 Europe/Rome
+
  - Return cursor's final line and column from Cursor -> location()
    (GH#3) (thank, @gutorc92!)
  - Add method to retrieve cursor's access specifier (GH#4)
