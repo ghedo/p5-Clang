@@ -35,6 +35,14 @@ Return the display name for the entity referenced by the given cursor.
 Retrieve a list of the children of the given cursor. The children are
 C<Clang::Cursor> objects too.
 
+=head2 is_pure_virtual( )
+
+Determine whether the given cursor kind represents a pure virtual method.
+
+=head2 is_virtual( )
+
+Determine whether the given cursor kind represents a virtual method.
+
 =head2 location( )
 
 Retrieve the location of the given cursor. This function returns five values: a
