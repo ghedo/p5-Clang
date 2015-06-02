@@ -72,4 +72,58 @@ $cursors = @$cursors[0] -> children;
 );
 is_deeply(\@access,\@expected);
 
+#Testing if a method is pure virtual or not
+
+$index = Clang::Index -> new(0);
+$tunit = $index -> parse('t/cpp/cat.cc');
+$cursr = $tunit -> cursor;
+$kind = $cursr -> kind;
+$cursors = $cursr -> children;
+
+my $check_pure_virtual = 'false';
+my $pure_virtual_name = 'undef';
+
+_visit_node($cursr);
+
+sub _visit_node {
+	my $node = shift;
+	if($node->is_pure_virtual){
+		$pure_virtual_name = $node->spelling;
+		$check_pure_virtual = 'true';
+	}
+	my $children = $node->children;
+	foreach my $child(@$children) {
+		_visit_node($child);
+	}
+}
+is($check_pure_virtual,'true');
+is($pure_virtual_name,'name');
+
+#Testing if a method is virtual or not
+
+$index = Clang::Index -> new(0);
+$tunit = $index -> parse('t/cpp/cat.cc');
+$cursr = $tunit -> cursor;
+$kind = $cursr -> kind;
+$cursors = $cursr -> children;
+
+my $check_virtual = 'false';
+my $virtual_name = 'undef';
+
+_visit_node_virtual($cursr);
+
+sub _visit_node_virtual {
+	my $node = shift;
+	if($node->is_virtual){
+		$virtual_name = $node->spelling;
+		$check_virtual = 'true';
+	}
+	my $children = $node->children;
+	foreach my $child(@$children) {
+		_visit_node_virtual($child);
+	}
+}
+is($check_virtual,'true');
+is($virtual_name,'name');
+
 done_testing;

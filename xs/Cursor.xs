@@ -54,6 +54,24 @@ children(self)
 
 	OUTPUT: RETVAL
 
+SV *
+is_pure_virtual(self)
+	Cursor self
+
+	CODE:
+		RETVAL = clang_CXXMethod_isPureVirtual(*self) ? &PL_sv_yes : &PL_sv_no;
+
+	OUTPUT: RETVAL
+
+SV *
+is_virtual(self)
+	Cursor self
+
+	CODE:
+		RETVAL = clang_CXXMethod_isVirtual(*self) ? &PL_sv_yes : &PL_sv_no;
+
+	OUTPUT: RETVAL
+
 void
 location(self)
 	Cursor self
