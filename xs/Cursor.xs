@@ -31,13 +31,13 @@ spelling(self)
 
 	OUTPUT: RETVAL
 
-SV *
+int
 num_arguments(self)
 	Cursor self
 
 	CODE:
-		CXString num_arguments = clang_Cursor_getNumArguments(*self);
-		RETVAL = newSVpv(clang_getCString(num_arguments), 0);
+		int num_arguments  = clang_Cursor_getNumArguments(*self);
+		RETVAL = num_arguments;
 
 	OUTPUT: RETVAL
 

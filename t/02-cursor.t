@@ -35,7 +35,28 @@ $index = Clang::Index -> new(0);
 $tunit = $index -> parse('t/main.cpp');
 $cursr = $tunit -> cursor;
 
+#Testing of method spelling
 is($cursr -> spelling, 't/main.cpp');
+
+#Testing of method num_arguments
+
+_visit_node($cursr);
+
+my $num_arguments = 0;
+
+sub _visit_node_arguments {
+	my $node = shift;
+	if($node->kind->is_declaration()){
+		$num_arguments = $node->num_arguments;
+		is($num_arguments, 2);
+	}
+	my $children = $node->children;
+	foreach my $child(@$children) {
+		_visit_node_arguments($child);
+	}
+}
+
+#Testing of method displayname
 is($cursr -> displayname, 't/main.cpp');
 
 $cursors = $cursr -> children;

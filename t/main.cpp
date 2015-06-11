@@ -1,5 +1,5 @@
 #include "person.h"
 
-int main() {
+int main(int argc, char const *argv[]) {
 	Person p(2,2);
 }
