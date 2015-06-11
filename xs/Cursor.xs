@@ -32,6 +32,16 @@ spelling(self)
 	OUTPUT: RETVAL
 
 SV *
+num_arguments(self)
+	Cursor self
+
+	CODE:
+		CXString num_arguments = clang_Cursor_getNumArguments(*self);
+		RETVAL = newSVpv(clang_getCString(num_arguments), 0);
+
+	OUTPUT: RETVAL
+
+SV *
 displayname(self)
 	Cursor self
 

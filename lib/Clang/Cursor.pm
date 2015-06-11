@@ -26,6 +26,10 @@ Retrieve the L<Clang::Type> of the entity referenced by the given cursor.
 
 Retrieve the name for the entity referenced by the given cursor.
 
+=head2 num_arguments( )
+
+Retrieve the number of arguments referenced by the given cursor.
+
 =head2 displayname( )
 
 Return the display name for the entity referenced by the given cursor.
