@@ -31,6 +31,16 @@ spelling(self)
 
 	OUTPUT: RETVAL
 
+int
+num_arguments(self)
+	Cursor self
+
+	CODE:
+		int num_arguments  = clang_Cursor_getNumArguments(*self);
+		RETVAL = num_arguments;
+
+	OUTPUT: RETVAL
+
 SV *
 displayname(self)
 	Cursor self

@@ -35,7 +35,27 @@ $index = Clang::Index -> new(0);
 $tunit = $index -> parse('t/main.cpp');
 $cursr = $tunit -> cursor;
 
+#Testing of method spelling
 is($cursr -> spelling, 't/main.cpp');
+
+#Testing of method num_arguments
+
+my $num_arguments = 0;
+_visit_node_arguments($cursr);
+
+sub _visit_node_arguments {
+	my $node = shift;
+	if($node->kind->spelling() eq "FunctionDecl"){
+		$num_arguments = $node->num_arguments;
+	}
+	my $children = $node->children;
+	foreach my $child(@$children) {
+		_visit_node_arguments($child);
+	}
+}
+is($num_arguments, 2);
+
+#Testing of method displayname
 is($cursr -> displayname, 't/main.cpp');
 
 $cursors = $cursr -> children;
@@ -125,5 +145,29 @@ sub _visit_node_virtual {
 }
 is($check_virtual,'true');
 is($virtual_name,'name');
+
+$tunit = $index -> parse('t/main.cpp');
+$cursr = $tunit -> cursor;
+my $method_num_arguments = -4;
+
+sub _visit_node_method_arguments {
+	my $node = shift;
+	if($node->kind->spelling() eq "CXXMethod"){
+		if ($node->spelling() eq "walk"){
+				$method_num_arguments = $node->num_arguments;
+				is($method_num_arguments, 2);
+			}
+		else{ ## test methods getAge() and getId()
+			$method_num_arguments = $node->num_arguments;
+			is($method_num_arguments, 0);
+		}
+	}
+	my $children = $node->children;
+	foreach my $child(@$children) {
+		_visit_node_method_arguments($child);
+	}
+}
+
+_visit_node_method_arguments($cursr);
 
 done_testing;
