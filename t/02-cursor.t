@@ -146,4 +146,28 @@ sub _visit_node_virtual {
 is($check_virtual,'true');
 is($virtual_name,'name');
 
+$tunit = $index -> parse('t/main.cpp');
+$cursr = $tunit -> cursor;
+my $method_num_arguments = -4;
+
+sub _visit_node_method_arguments {
+	my $node = shift;
+	if($node->kind->spelling() eq "CXXMethod"){
+		if ($node->spelling() eq "walk"){
+				$method_num_arguments = $node->num_arguments;
+				is($method_num_arguments, 2);
+			}
+		else{ ## test methods getAge() and getId()
+			$method_num_arguments = $node->num_arguments;
+			is($method_num_arguments, 0);
+		}
+	}
+	my $children = $node->children;
+	foreach my $child(@$children) {
+		_visit_node_method_arguments($child);
+	}
+}
+
+_visit_node_method_arguments($cursr);
+
 done_testing;
