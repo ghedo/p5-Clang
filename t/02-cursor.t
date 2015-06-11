@@ -149,6 +149,7 @@ is($virtual_name,'name');
 $tunit = $index -> parse('t/main.cpp');
 $cursr = $tunit -> cursor;
 my $method_num_arguments = -4;
+_visit_node_method_arguments($cursr);
 
 sub _visit_node_method_arguments {
 	my $node = shift;
@@ -168,6 +169,27 @@ sub _visit_node_method_arguments {
 	}
 }
 
+$tunit = $index -> parse('t/test.c');
+$cursr = $tunit -> cursor;
+my $function_num_arguments = -5;
 _visit_node_method_arguments($cursr);
+
+sub _visit_node_method_arguments {
+	my $node = shift;
+	if($node->kind->spelling() eq "FunctionDecl"){
+		if ($node->spelling() eq "foo"){
+				$method_num_arguments = $node->num_arguments;
+				is($method_num_arguments, 1);
+			}
+		else{ ## test function main()
+			$method_num_arguments = $node->num_arguments;
+			is($method_num_arguments, 2);
+		}
+	}
+	my $children = $node->children;
+	foreach my $child(@$children) {
+		_visit_node_method_arguments($child);
+	}
+}
 
 done_testing;
