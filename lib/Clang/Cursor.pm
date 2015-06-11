@@ -26,6 +26,10 @@ Retrieve the L<Clang::Type> of the entity referenced by the given cursor.
 
 Retrieve the name for the entity referenced by the given cursor.
 
+=head2 num_arguments( )
+
+Retrieve the number of arguments referenced by the given cursor.
+
 =head2 displayname( )
 
 Return the display name for the entity referenced by the given cursor.
@@ -34,6 +38,14 @@ Return the display name for the entity referenced by the given cursor.
 
 Retrieve a list of the children of the given cursor. The children are
 C<Clang::Cursor> objects too.
+
+=head2 is_pure_virtual( )
+
+Determine whether the given cursor kind represents a pure virtual method.
+
+=head2 is_virtual( )
+
+Determine whether the given cursor kind represents a virtual method.
 
 =head2 location( )
 

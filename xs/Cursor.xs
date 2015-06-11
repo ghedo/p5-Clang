@@ -31,6 +31,16 @@ spelling(self)
 
 	OUTPUT: RETVAL
 
+int
+num_arguments(self)
+	Cursor self
+
+	CODE:
+		int num_arguments  = clang_Cursor_getNumArguments(*self);
+		RETVAL = num_arguments;
+
+	OUTPUT: RETVAL
+
 SV *
 displayname(self)
 	Cursor self
@@ -51,6 +61,24 @@ children(self)
 		clang_visitChildren(*self, visitor, children);
 
 		RETVAL = children;
+
+	OUTPUT: RETVAL
+
+SV *
+is_pure_virtual(self)
+	Cursor self
+
+	CODE:
+		RETVAL = clang_CXXMethod_isPureVirtual(*self) ? &PL_sv_yes : &PL_sv_no;
+
+	OUTPUT: RETVAL
+
+SV *
+is_virtual(self)
+	Cursor self
+
+	CODE:
+		RETVAL = clang_CXXMethod_isVirtual(*self) ? &PL_sv_yes : &PL_sv_no;
 
 	OUTPUT: RETVAL
 
