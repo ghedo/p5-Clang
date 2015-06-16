@@ -82,6 +82,17 @@ is_virtual(self)
 
 	OUTPUT: RETVAL
 
+SV *
+is_system_header(self)
+	Cursor self
+
+	CODE:
+		CXSourceLocation loc = clang_getCursorLocation(*self);
+
+		RETVAL = clang_Location_isInSystemHeader(loc) ? &PL_sv_yes : &PL_sv_no;
+
+	OUTPUT: RETVAL
+
 void
 location(self)
 	Cursor self
