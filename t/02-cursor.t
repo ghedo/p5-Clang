@@ -5,11 +5,11 @@ use Test::More;
 use Clang;
 
 my $index = Clang::Index -> new(0);
-my $tunit = $index -> parse('t/test.c');
+my $tunit = $index -> parse('t/fragments/test.c');
 my $cursr = $tunit -> cursor;
 
-is($cursr -> spelling, 't/test.c');
-is($cursr -> displayname, 't/test.c');
+is($cursr -> spelling, 't/fragments/test.c');
+is($cursr -> displayname, 't/fragments/test.c');
 
 my $cursors = $cursr -> children;
 
@@ -26,17 +26,17 @@ is($file, ''); is($line, 0); is($column, 0);
 
 my @locations = map { join ' ', $_ -> location } @$cursors;
 @expected     = (
-	't/test.c 1 6 5 2',
-	't/test.c 7 5 11 2'
+	't/fragments/test.c 1 6 5 2',
+	't/fragments/test.c 7 5 11 2'
 );
 is_deeply(\@locations, \@expected);
 
 $index = Clang::Index -> new(0);
-$tunit = $index -> parse('t/main.cpp');
+$tunit = $index -> parse('t/fragments/main.cpp');
 $cursr = $tunit -> cursor;
 
 #Testing of method spelling
-is($cursr -> spelling, 't/main.cpp');
+is($cursr -> spelling, 't/fragments/main.cpp');
 
 #Testing of method num_arguments
 
@@ -56,7 +56,7 @@ sub _visit_node_arguments {
 is($num_arguments, 2);
 
 #Testing of method displayname
-is($cursr -> displayname, 't/main.cpp');
+is($cursr -> displayname, 't/fragments/main.cpp');
 
 $cursors = $cursr -> children;
 
@@ -73,8 +73,8 @@ is($file, ''); is($line, 0); is($column, 0);
 
 @locations = map { join ' ', $_ -> location } @$cursors;
 @expected     = (
-	't/person.h 4 7 13 2',
-	't/main.cpp 3 5 5 2'
+	't/fragments/person.h 4 7 13 2',
+	't/fragments/main.cpp 3 5 5 2'
 );
 is_deeply(\@locations, \@expected);
 
@@ -95,7 +95,7 @@ is_deeply(\@access,\@expected);
 #Testing if a method is pure virtual or not
 
 $index = Clang::Index -> new(0);
-$tunit = $index -> parse('t/cpp/cat.cc');
+$tunit = $index -> parse('t/fragments/cat.cc');
 $cursr = $tunit -> cursor;
 $kind = $cursr -> kind;
 $cursors = $cursr -> children;
@@ -122,7 +122,7 @@ is($pure_virtual_name,'name');
 #Testing if a method is virtual or not
 
 $index = Clang::Index -> new(0);
-$tunit = $index -> parse('t/cpp/cat.cc');
+$tunit = $index -> parse('t/fragments/cat.cc');
 $cursr = $tunit -> cursor;
 $kind = $cursr -> kind;
 $cursors = $cursr -> children;
@@ -146,7 +146,7 @@ sub _visit_node_virtual {
 is($check_virtual,'true');
 is($virtual_name,'name');
 
-$tunit = $index -> parse('t/main.cpp');
+$tunit = $index -> parse('t/fragments/main.cpp');
 $cursr = $tunit -> cursor;
 my $method_num_arguments = -4;
 _visit_node_method_arguments($cursr);
@@ -169,7 +169,7 @@ sub _visit_node_method_arguments {
 	}
 }
 
-$tunit = $index -> parse('t/test.c');
+$tunit = $index -> parse('t/fragments/test.c');
 $cursr = $tunit -> cursor;
 my $function_num_arguments = -5;
 _visit_node_method_arguments($cursr);

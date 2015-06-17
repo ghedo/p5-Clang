@@ -5,7 +5,7 @@ use Test::More;
 use Clang;
 
 my $index = Clang::Index -> new(0);
-my $tunit = $index -> parse('t/test.c');
+my $tunit = $index -> parse('t/fragments/test.c');
 my $cursr = $tunit -> cursor;
 
 is($cursr -> type -> kind -> spelling, 'Invalid');
