@@ -2,6 +2,11 @@ Revision history for Clang
 
 {{$NEXT}}
 
+ - Add methods to determine whether a cursor represents a virtual method
+   or a pure virtual method (GH#5) (thanks, @ArthurJahn!)
+ - Add method to get a cursor's number of arguments (GH#5)
+   (thanks, @Ziul, @LucianoAlmeida!)
+
 0.08      2015-05-26 14:00:26+02:00 Europe/Rome
 
  - Return cursor's final line and column from Cursor -> location()
