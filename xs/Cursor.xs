@@ -114,6 +114,16 @@ location(self)
 		mXPUSHi(col_end);
 
 SV *
+USR(self)
+	Cursor self
+
+	CODE:
+		CXString usr = clang_getCursorUSR(*self);
+		RETVAL = newSVpv(clang_getCString(usr),0);
+
+	OUTPUT: RETVAL
+
+SV *
 access_specifier(self)
 	Cursor self
 
