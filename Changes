@@ -2,6 +2,8 @@ Revision history for Clang
 
 {{$NEXT}}
 
+0.09      2015-06-20 18:48:51+02:00 Europe/Rome
+
  - Add methods to determine whether a cursor represents a virtual method
    or a pure virtual method (GH#5) (thanks, @ArthurJahn!)
  - Add method to get a cursor's number of arguments (GH#5)
