@@ -30,6 +30,10 @@ Retrieve the name for the entity referenced by the given cursor.
 
 Retrieve the number of arguments referenced by the given cursor.
 
+=head2 USR( )
+
+Retrieve the unified symbol resolution.
+
 =head2 displayname( )
 
 Return the display name for the entity referenced by the given cursor.
