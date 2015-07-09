@@ -134,6 +134,19 @@ USR(self)
 
 	OUTPUT: RETVAL
 
+Cursor
+get_cursor_referenced(self)
+	Cursor self
+
+	CODE:
+		CXCursor *retval = malloc(sizeof(CXCursor));
+		CXCursor cursor = clang_getCursorReferenced(*self);
+
+		*retval = cursor;
+		RETVAL = retval;
+
+	OUTPUT: RETVAL
+
 SV *
 access_specifier(self)
 	Cursor self
