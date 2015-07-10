@@ -2,6 +2,9 @@ Revision history for Clang
 
 {{$NEXT}}
 
+ - Add method to get a cursor's unified symbol resolution (GH#6)
+   (thanks, @ArthurJahn, @Ziul and @LucianoAlmeida!)
+
 0.09      2015-06-20 18:48:51+02:00 Europe/Rome
 
  - Add methods to determine whether a cursor represents a virtual method
