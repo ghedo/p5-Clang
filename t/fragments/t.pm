@@ -5,7 +5,7 @@ use warnings;
 use Data::Dumper;
 use Clang;
 
-sub filhos{
+sub enfants{
 	my ($children) = @_;
 
 	my @childre = @{$children};
@@ -15,7 +15,7 @@ sub filhos{
             print "    ",$child -> spelling, ' ', $child-> kind -> spelling;
 			print "\n";
         }
-        filhos($child-> children);
+        enfants($child-> children);
     }
 }
 
@@ -37,7 +37,7 @@ sub metodo{
 	            print "referencia = ", $referenced->spelling, "\n";
 	            print "kind = ", $referenced->kind->spelling, "\n";
             }
-            #filhos($child-> children);
+            #enfants($child-> children);
         }
 		metodo($child-> children);
 	}
