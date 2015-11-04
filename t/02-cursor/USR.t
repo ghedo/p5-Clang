@@ -10,7 +10,7 @@ my $index = Clang::Index -> new(0);
 my $tunit = $index -> parse('t/fragments/person.cpp');
 my $cursr = $tunit -> cursor;
 
-my $check_usr = 'c:@C@Person@F@walk#I#f#';
+my $check_usr = 'c:@S@Person@F@walk#I#f#';
 
 _visit_node_usr($cursr);
 
