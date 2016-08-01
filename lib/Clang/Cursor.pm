@@ -58,6 +58,14 @@ string containing the source file name, an integer containing the initial line
 number, an integer containing the initial column number, an integer containing
 the final line number, and another integer containing the final column number.
 
+=head2 is_system_header( )
+
+Check if the import is from a system library or not.
+
+=head2 get_cursor_referenced( )
+
+Return the referenced cursor.
+
 =head2 access_specifier( )
 
 Retrieve the access of the given cursor. This can return the following values:

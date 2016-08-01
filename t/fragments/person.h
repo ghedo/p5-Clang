@@ -1,4 +1,4 @@
-#ifndef _PERSON_h
+#ifndef _PERSON_H
 #define _PERSON_H
 
 class Person {

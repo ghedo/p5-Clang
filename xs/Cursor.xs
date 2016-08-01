@@ -82,6 +82,17 @@ is_virtual(self)
 
 	OUTPUT: RETVAL
 
+SV *
+is_system_header(self)
+	Cursor self
+
+	CODE:
+		CXSourceLocation loc = clang_getCursorLocation(*self);
+
+		RETVAL = clang_Location_isInSystemHeader(loc) ? &PL_sv_yes : &PL_sv_no;
+
+	OUTPUT: RETVAL
+
 void
 location(self)
 	Cursor self
@@ -120,6 +131,19 @@ USR(self)
 	CODE:
 		CXString usr = clang_getCursorUSR(*self);
 		RETVAL = newSVpv(clang_getCString(usr),0);
+
+	OUTPUT: RETVAL
+
+Cursor
+get_cursor_referenced(self)
+	Cursor self
+
+	CODE:
+		CXCursor *retval = malloc(sizeof(CXCursor));
+		CXCursor cursor = clang_getCursorReferenced(*self);
+
+		*retval = cursor;
+		RETVAL = retval;
 
 	OUTPUT: RETVAL
 
